@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- mybatis约束文档 -->
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 导入属性文件 -->
+    <properties resource="jdbc.properties"/>
+    <settings>
+        <!-- 缓存的全局开关，默认是 true -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 延迟加载全局开关，默认是 false -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+    </settings>
+    <!-- 别名 -->
+    <typeAliases>
+        <!-- <typeAlias type="pojo.UserInfo" alias="UserInfo"/> -->
+        <package name="org.example.pojo"/>
+    </typeAliases>
+    <!-- 运行环境 -->
+    <environments default="development">
+        <!-- 当前配置的运行环境 -->
+        <environment id="development">
+            <!-- 事务默认提交方式 手动提交 -->
+            <transactionManager type="JDBC"/>
+            <!-- 数据源 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!-- 使用相对资源路径 -->
+        <mapper resource="mapper/UserInfoMapper.xml"/>
+        <!-- 支持 mapper动态代理 -->
+        <package name="org/example/mapper" />
+    </mappers>
+</configuration>
